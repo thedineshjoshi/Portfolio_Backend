@@ -6,13 +6,13 @@ using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbString"));
 });
-
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {
     builder.AllowAnyOrigin()
@@ -41,7 +41,6 @@ builder.Services.AddAuthentication(O =>
         ValidAudience = "localhost:4200",
         ValidateLifetime = true,
         ClockSkew = TimeSpan.Zero,
-        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"])),
         NameClaimType = ClaimTypes.NameIdentifier
     };
 });
@@ -55,12 +54,15 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI( c=> c.SwaggerEndpoint("/swagger/v1/swagger.json", "Portfolio_Backend v1"));
 }
-
+app.UseStaticFiles();
 app.UseHttpsRedirection();
-
+app.UseRouting();
+app.UseCors("MyPolicy");
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

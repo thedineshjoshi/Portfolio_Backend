@@ -18,16 +18,15 @@ namespace Portfolio_Backend.Controllers
             _context = context;
         }
         // GET: api/<ProjectsController>
-       // [Route("GetProject")]
-        [HttpGet]
+        
+        [HttpGet("GetProject")]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
             return await _context.Projects.ToListAsync();
         }
 
         // GET api/<ProjectsController>/5
-        //[Route("GetProjectById")]
-        [HttpGet("{id}")]
+        [HttpGet("GetProject/{id}")]
         public async Task<ActionResult<Project>> GetProject(int id)
         {
             var project = await _context.Projects.FindAsync(id);
@@ -41,8 +40,8 @@ namespace Portfolio_Backend.Controllers
         }
 
         // POST api/<ProjectsController>
-        //[Route("AddProject")]
-        [HttpPost]
+        
+        [HttpPost("AddProject")]
         public async Task<ActionResult<Project>> PostProject(Project project)
         {
             _context.Projects.Add(project);
@@ -52,8 +51,7 @@ namespace Portfolio_Backend.Controllers
         }
 
         // PUT api/<ProjectsController>/5
-        //[Route("UpdateProject")]
-        [HttpPut("{id}")]
+        [HttpPut("UpdateProject/{id}")]
         public async Task<IActionResult> PutProject(Guid id, Project project)
         {
             if (id != project.Id)
@@ -83,8 +81,7 @@ namespace Portfolio_Backend.Controllers
         }
 
         // DELETE api/<ProjectsController>/5
-        //[Route("DeleteProject")]
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteProject/{id}")]
         public async Task<IActionResult> DeleteProject(Guid id)
         {
             var project = await _context.Projects.FindAsync(id);

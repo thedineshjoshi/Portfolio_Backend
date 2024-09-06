@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Portfolio_Backend.Data;
 using Portfolio_Backend.Model;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Portfolio_Backend.Controllers
 {
     [Route("api/[controller]")]
@@ -17,17 +15,16 @@ namespace Portfolio_Backend.Controllers
         {
             _context = context;
         }
-        //GET: api/<BlogsController>
-        //[Route("GetBlog")]
-        [HttpGet]
+
+        // GET: api/Blogs/GetBlog
+        [HttpGet("GetBlog")]
         public async Task<ActionResult<IEnumerable<Blog>>> GetBlogs()
         {
             return await _context.Blogs.Include(b => b.BlogImages).ToListAsync();
         }
 
-        // GET api/<BlogsController>/5
-        //[Route("GetBlogById")]
-        [HttpGet("{id}")]
+        // GET: api/Blogs/GetBlogById/5
+        [HttpGet("GetBlogById/{id}")]
         public async Task<ActionResult<Blog>> GetBlog(Guid id)
         {
             var blog = await _context.Blogs.Include(b => b.BlogImages).FirstOrDefaultAsync(b => b.Id == id);
@@ -40,20 +37,41 @@ namespace Portfolio_Backend.Controllers
             return blog;
         }
 
-        // POST api/<BlogsController>
-        //[Route("AddBlog")]
-        [HttpPost]
-        public async Task<ActionResult<Blog>> PostBlog(Blog blog)
+        // POST: api/Blogs/AddBlog
+        [HttpPost("AddBlog")]
+        public async Task<ActionResult<Blog>> PostBlog([FromBody] Blog blog)
         {
+            if (blog == null)
+            {
+                return BadRequest("Blog data is null.");
+            }
+
+            // Validate required fields
+            if (string.IsNullOrEmpty(blog.Title) || string.IsNullOrEmpty(blog.MetaDescription))
+            {
+                return BadRequest("Title and MetaDescription are required.");
+            }
+
+            // Ensure blogImages has valid data
+            if (blog.BlogImages != null)
+            {
+                foreach (var image in blog.BlogImages)
+                {
+                    if (string.IsNullOrEmpty(image.ImageUrl))
+                    {
+                        return BadRequest("Each blog image must have a valid URL.");
+                    }
+                }
+            }
+
             _context.Blogs.Add(blog);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetBlog), new { id = blog.Id }, blog);
         }
 
-        // PUT api/<BlogsController>/5
-        //[Route("UpdateBlog")]
-        [HttpPut("{id}")]
+        // PUT: api/Blogs/UpdateBlog/5
+        [HttpPut("UpdateBlog/{id}")]
         public async Task<IActionResult> PutBlog(Guid id, Blog blog)
         {
             if (id != blog.Id)
@@ -82,9 +100,8 @@ namespace Portfolio_Backend.Controllers
             return NoContent();
         }
 
-        // DELETE api/<BlogsController>/5
-        //[Route("DeleteBlog")]
-        [HttpDelete("{id}")]
+        // DELETE: api/Blogs/DeleteBlog/5
+        [HttpDelete("DeleteBlog/{id}")]
         public async Task<IActionResult> DeleteBlog(Guid id)
         {
             var blog = await _context.Blogs.FindAsync(id);

@@ -136,3 +136,5 @@ D:\Dinesh Prasad Joshi\Programmings\Portfolio_Backend\Portfolio_Backend\Portfoli
 D:\Dinesh Prasad Joshi\Programmings\Portfolio_Backend\Portfolio_Backend\Portfolio_Backend\obj\Debug\net8.0\Portfolio_Backend.pdb
 D:\Dinesh Prasad Joshi\Programmings\Portfolio_Backend\Portfolio_Backend\Portfolio_Backend\obj\Debug\net8.0\Portfolio_Backend.genruntimeconfig.cache
 D:\Dinesh Prasad Joshi\Programmings\Portfolio_Backend\Portfolio_Backend\Portfolio_Backend\obj\Debug\net8.0\ref\Portfolio_Backend.dll
+D:\Dinesh Prasad Joshi\Programmings\Portfolio_Backend\Portfolio_Backend\Portfolio_Backend\obj\Debug\net8.0\Portfolio_Backend.sourcelink.json
+D:\Dinesh Prasad Joshi\Programmings\Portfolio_Backend\Portfolio_Backend\Portfolio_Backend\bin\Debug\net8.0\Portfolio_Backend.staticwebassets.runtime.json

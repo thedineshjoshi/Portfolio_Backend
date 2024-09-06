@@ -78,7 +78,7 @@ namespace Portfolio_Backend.Migrations
             migrationBuilder.InsertData(
                 table: "Logins",
                 columns: new[] { "id", "Password", "Username" },
-                values: new object[] { new Guid("595f738c-8f0b-43bf-b78c-211e1f93710e"), "QERpbmVzaGRqQDIwODBhZWZzYWRuaGZAZnNqZG5mZ2l3ZUBpamlhc25A", "Dinesh25" });
+                values: new object[] { new Guid("0147b5b0-ea7b-480a-a1ea-4bdcb50bf68f"), "QERpbmVzaGRqQDIwODBhZWZzYWRuaGZAZnNqZG5mZ2l3ZUBpamlhc25A", "Dinesh25" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BlogImages_BlogId",

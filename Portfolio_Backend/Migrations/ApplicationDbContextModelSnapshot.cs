@@ -98,7 +98,7 @@ namespace Portfolio_Backend.Migrations
                     b.HasData(
                         new
                         {
-                            id = new Guid("595f738c-8f0b-43bf-b78c-211e1f93710e"),
+                            id = new Guid("0147b5b0-ea7b-480a-a1ea-4bdcb50bf68f"),
                             Password = "QERpbmVzaGRqQDIwODBhZWZzYWRuaGZAZnNqZG5mZ2l3ZUBpamlhc25A",
                             Username = "Dinesh25"
                         });
@@ -133,13 +133,11 @@ namespace Portfolio_Backend.Migrations
 
             modelBuilder.Entity("Portfolio_Backend.Model.BlogImage", b =>
                 {
-                    b.HasOne("Portfolio_Backend.Model.Blog", "Blog")
+                    b.HasOne("Portfolio_Backend.Model.Blog", null)
                         .WithMany("BlogImages")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Blog");
                 });
 
             modelBuilder.Entity("Portfolio_Backend.Model.Blog", b =>
