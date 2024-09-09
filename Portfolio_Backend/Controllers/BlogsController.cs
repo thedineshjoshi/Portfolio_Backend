@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Portfolio_Backend.Data;
 using Portfolio_Backend.Model;
+using static Azure.Core.HttpHeader;
 
 namespace Portfolio_Backend.Controllers
 {
@@ -63,9 +64,40 @@ namespace Portfolio_Backend.Controllers
                     }
                 }
             }
+            if (!string.IsNullOrEmpty(blog.Label))
+            {
+                var label = await _context.Labels.FirstOrDefaultAsync(l => l.Name == blog.Label);
 
-            _context.Blogs.Add(blog);
-            await _context.SaveChangesAsync();
+                if (label == null)
+                {
+
+                    label = new Label
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = blog.Label
+                    };
+                    _context.Labels.Add(label);
+                    await _context.SaveChangesAsync();
+                }
+                _context.Blogs.Add(blog);
+                await _context.SaveChangesAsync();
+
+                var BlogLabel = new BlogLabel
+                {
+                    BlogId = blog.Id,
+                    LabelId = label.Id
+                };
+                _context.Blogs.Add(blog);
+            }
+            else
+            {
+                _context.Blogs.Add(blog);
+                await _context.SaveChangesAsync();
+            }
+            if (!string.IsNullOrEmpty(blog.Label))
+            {
+                await _context.SaveChangesAsync();
+            }
 
             return CreatedAtAction(nameof(GetBlog), new { id = blog.Id }, blog);
         }
@@ -120,5 +152,54 @@ namespace Portfolio_Backend.Controllers
         {
             return _context.Blogs.Any(e => e.Id == id);
         }
+
+        //Add Comment
+        [HttpPost("AddComment")]
+        public async Task<IActionResult> AddComment(Guid blogId, [FromBody] Comment comment)
+        {
+            if (comment == null || string.IsNullOrEmpty(comment.Name) || string.IsNullOrEmpty(comment.Content))
+            {
+                return BadRequest("Invalid comment data.");
+            }
+
+            var blog = await _context.Blogs.FindAsync(blogId);
+            if (blog == null)
+            {
+                return NotFound("Blog not found.");
+            }
+            comment.Id = Guid.NewGuid();
+            comment.BlogId = blogId;
+            comment.PostedAt = DateTime.Now;
+
+            _context.Comments.Add(comment);
+            await _context.SaveChangesAsync();
+
+            return Ok(comment);
+        }
+
+        [HttpGet("GetCommentsByBlogId/{blogId}")]
+        public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsByBlogId(Guid blogId)
+        {
+            // Check if the blog exists
+            var blogExists = await _context.Blogs.AnyAsync(b => b.Id == blogId);
+            if (!blogExists)
+            {
+                return NotFound(new { Message = "Blog not found." });
+            }
+
+            // Fetch comments for the specified blog
+            var comments = await _context.Comments
+                                         .Where(c => c.BlogId == blogId)
+                                         .OrderBy(c => c.PostedAt) // Optionally, order by creation date
+                                         .ToListAsync();
+
+            if (comments == null || comments.Count == 0)
+            {
+                return NotFound(new { Message = "No comments found for this blog." });
+            }
+
+            return Ok(comments);
+        }
+
     }
 }
