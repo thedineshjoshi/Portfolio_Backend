@@ -61,6 +61,10 @@
       "PackagePath": "staticwebassets\\uploads\\382fe66d-36b9-4f85-a6ec-066681d08eba.jpg"
     },
     {
+      "Id": "D:\\Dinesh Prasad Joshi\\Programmings\\Portfolio_Backend\\Portfolio_Backend\\Portfolio_Backend\\wwwroot\\uploads\\3dd38834-5569-4e39-8164-87dc769d5bc2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\3dd38834-5569-4e39-8164-87dc769d5bc2.jpg"
+    },
+    {
       "Id": "D:\\Dinesh Prasad Joshi\\Programmings\\Portfolio_Backend\\Portfolio_Backend\\Portfolio_Backend\\wwwroot\\uploads\\3dfe4d52-c45e-4e05-be4c-4c2e7fba177e.JPG",
       "PackagePath": "staticwebassets\\uploads\\3dfe4d52-c45e-4e05-be4c-4c2e7fba177e.JPG"
     },
@@ -71,6 +75,10 @@
     {
       "Id": "D:\\Dinesh Prasad Joshi\\Programmings\\Portfolio_Backend\\Portfolio_Backend\\Portfolio_Backend\\wwwroot\\uploads\\43d13c75-b951-4b2a-98f5-e142cd4044d1.JPG",
       "PackagePath": "staticwebassets\\uploads\\43d13c75-b951-4b2a-98f5-e142cd4044d1.JPG"
+    },
+    {
+      "Id": "D:\\Dinesh Prasad Joshi\\Programmings\\Portfolio_Backend\\Portfolio_Backend\\Portfolio_Backend\\wwwroot\\uploads\\4587ab33-5936-44b7-8f36-92f07ba10217.png",
+      "PackagePath": "staticwebassets\\uploads\\4587ab33-5936-44b7-8f36-92f07ba10217.png"
     },
     {
       "Id": "D:\\Dinesh Prasad Joshi\\Programmings\\Portfolio_Backend\\Portfolio_Backend\\Portfolio_Backend\\wwwroot\\uploads\\46e4c0a0-2d15-4217-bf75-1e05938ef6bb.jpg",
@@ -151,6 +159,10 @@
     {
       "Id": "D:\\Dinesh Prasad Joshi\\Programmings\\Portfolio_Backend\\Portfolio_Backend\\Portfolio_Backend\\wwwroot\\uploads\\8883e210-ce7c-4bc3-9c4a-e4a03557055a.png",
       "PackagePath": "staticwebassets\\uploads\\8883e210-ce7c-4bc3-9c4a-e4a03557055a.png"
+    },
+    {
+      "Id": "D:\\Dinesh Prasad Joshi\\Programmings\\Portfolio_Backend\\Portfolio_Backend\\Portfolio_Backend\\wwwroot\\uploads\\8a9696a4-cb15-4d35-8764-fa68ac9a960a.png",
+      "PackagePath": "staticwebassets\\uploads\\8a9696a4-cb15-4d35-8764-fa68ac9a960a.png"
     },
     {
       "Id": "D:\\Dinesh Prasad Joshi\\Programmings\\Portfolio_Backend\\Portfolio_Backend\\Portfolio_Backend\\wwwroot\\uploads\\9151ea9c-ff79-4711-af10-4a044f286a09.png",
@@ -299,6 +311,10 @@
     {
       "Id": "D:\\Dinesh Prasad Joshi\\Programmings\\Portfolio_Backend\\Portfolio_Backend\\Portfolio_Backend\\wwwroot\\uploads\\f9d3d06d-194c-4465-8dcf-654ed54bfaaf.jpg",
       "PackagePath": "staticwebassets\\uploads\\f9d3d06d-194c-4465-8dcf-654ed54bfaaf.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Portfolio_Backend.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Portfolio_Backend.Microsoft.AspNetCore.StaticWebAssets.props",

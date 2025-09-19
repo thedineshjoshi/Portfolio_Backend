@@ -21,6 +21,8 @@ namespace Portfolio_Backend.Data
         public DbSet<Label> Labels { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<BlogLabel> BlogLabels { get; set; }
+        public DbSet<Timeline>Timelines { get; set; }
+        public DbSet<Certifications>Certifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -55,17 +57,16 @@ namespace Portfolio_Backend.Data
                 entity.HasMany(b => b.Comments)
                       .WithOne()
                       .HasForeignKey(c => c.BlogId)
-                      .OnDelete(DeleteBehavior.Cascade); // Optional: defines cascading delete behavior
+                      .OnDelete(DeleteBehavior.Cascade); 
             });
 
-            // Configure Comment entity
             builder.Entity<Comment>(entity =>
             {
                 entity.HasKey(c => c.Id);
                 entity.HasOne<Blog>()
                       .WithMany(b => b.Comments)
                       .HasForeignKey(c => c.BlogId)
-                      .OnDelete(DeleteBehavior.Cascade); // Optional: defines cascading delete behavior
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
         }

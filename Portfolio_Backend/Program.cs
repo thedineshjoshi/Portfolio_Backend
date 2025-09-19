@@ -11,7 +11,9 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DbString"));
+// options.UseSqlServer(builder.Configuration.GetConnectionString("DbString"));
+options.UseNpgsql(builder.Configuration.GetConnectionString("DbString"));
+
 });
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {
